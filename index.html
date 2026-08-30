@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>प्रथम पुण्यतिथि आमंत्रण - स्वर्गीय श्रीमती गंगा मठपाल</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Mukta:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    /* Light Mode - Traditional Cream, Maroon & Gold */
+    --bg-body: #f4ece1;
+    --bg-inner: #ffffff;
+    --bg-section: #fcf9f5;
+    --accent-primary: #8b1c1c; 
+    --accent-secondary: #b8860b; 
+    --text-main: #3a2a22;
+    --text-soft: #5c473c;
+    --border-ornate: #c6a052;
+    --shadow-color: rgba(139, 28, 28, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+  }
+
+  .dark {
+    /* Dark Mode - Charcoal & Luminous Gold */
+    --bg-body: #14110f;
+    --bg-inner: #1e1917;
+    --bg-section: #26201d;
+    --accent-primary: #d4af37; 
+    --accent-secondary: #f0e6d2; 
+    --text-main: #f0e6d2;
+    --text-soft: #b8a89f;
+    --border-ornate: #d4af37;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --glass-bg: rgba(30, 25, 23, 0.7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg-body);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    transition: background-color 0.5s ease;
+    overflow: hidden;
+  }
+  
+  .slide-container {
+    align-items: center;
+    background-color: var(--bg-inner);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Mukta', sans-serif;
+    height: 720px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .slide-container.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+  .card-border {
+    border: 3px solid var(--border-ornate);
+    outline: 1px solid var(--border-ornate);
+    outline-offset: -8px;
+    border-radius: 12px;
+    height: 100%;
+    width: 100%;
+    padding: 35px 50px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: radial-gradient(circle at center, transparent 60%, rgba(198, 160, 82, 0.05) 100%);
+  }
+  
+  /* Decorative Corners */
+  .card-border::before, .card-border::after, .corner-tl, .corner-bl {
+    content: '\f18c'; /* FontAwesome Pagelines */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    font-size: 24px;
+    color: var(--border-ornate);
+    line-height: 1;
+  }
+  .card-border::before { top: 12px; left: 16px; }
+  .card-border::after { bottom: 12px; right: 16px; transform: rotate(180deg); }
+  .corner-tl { top: 12px; right: 16px; transform: rotate(90deg); }
+  .corner-bl { bottom: 12px; left: 16px; transform: rotate(270deg); }
+  
+  h1, h2, h3, h4, .om-text {
+    font-family: 'Amita', serif;
+    color: var(--accent-primary);
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+  }
+  p, li { font-family: 'Mukta', sans-serif; color: var(--text-main); font-size: 20px; line-height: 1.5; }
+  .om-text { font-size: 34px; margin-bottom: 15px; color: var(--accent-primary); }
+  .title-main { font-size: 52px; margin-bottom: 10px; letter-spacing: 1px; }
+  .quote-text { font-size: 25px; font-style: italic; text-align: center; color: var(--text-soft); margin: 25px 0; line-height: 1.6; padding: 0 40px; }
+  .floral-divider { color: var(--border-ornate); font-size: 20px; text-align: center; margin: 15px 0; letter-spacing: 15px; }
+  .subtitle { font-size: 32px; color: var(--accent-secondary); margin-bottom: 8px; }
+
+  /* Slide Layouts */
+  .cover-layout { justify-content: center; align-items: center; text-align: center; height: 100%; display: flex; flex-direction: column; }
+  .tribute-layout { display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: center; height: 100%; }
+  .image-wrapper { width: 100%; height: 480px; border-radius: 200px 200px 16px 16px; overflow: hidden; border: 6px solid var(--border-ornate); box-shadow: 0 12px 25px var(--shadow-color); margin: 0 auto; background-color: var(--bg-section); }
+  .image-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; }
+  .tribute-text-area { text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .tribute-text-area h2 { font-size: 46px; margin-bottom: 15px; }
+  
+  .dates-box { background-color: var(--bg-section); padding: 12px 25px; border-radius: 8px; display: inline-block; margin: 10px auto 25px; border: 1px solid var(--border-ornate); }
+  .dates-box p { font-size: 20px; margin: 0; color: var(--accent-primary); font-weight: 600; }
+  .invitation-body { font-size: 23px; text-align: justify; text-align-last: center; color: var(--text-main); }
+
+  .details-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; height: 100%; align-items: stretch; padding-top: 10px; }
+  .program-section, .family-section { background-color: var(--bg-section); border: 1px solid rgba(198, 160, 82, 0.4); border-radius: 12px; padding: 30px; height: 100%; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; }
+  .program-section h3, .family-section h3 { font-size: 32px; margin-bottom: 15px; border-bottom: 2px solid var(--border-ornate); padding-bottom: 10px; display: inline-block; align-self: center; }
+  .program-details { list-style: none; margin: 15px 0; padding: 0; text-align: left; }
+  .program-details li { font-size: 21px; margin-bottom: 12px; display: flex; align-items: center; color: var(--text-main); }
+  .program-details li img { width: 22px; height: 22px; margin-right: 15px; }
+  .program-details li i { color: var(--accent-primary); margin-right: 15px; width: 25px; text-align: center; font-size: 22px; }
+  
+  .prayer-text { font-weight: 700; color: var(--accent-primary); font-size: 24px; margin-top: 10px; }
+  .family-list { font-size: 18px; line-height: 1.6; display: flex; flex-direction: column; gap: 10px; color: var(--text-main); margin: 10px 0; }
+  .family-list p strong { color: var(--accent-primary); font-size: 19px; }
+  
+  .venue-bottom { background-color: var(--bg-body); padding: 8px 15px; border-radius: 6px; font-weight: bold; color: var(--accent-primary); font-size: 18px; margin-top: 10px; border: 1px dashed var(--border-ornate); cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .venue-bottom:hover { background-color: rgba(198, 160, 82, 0.2); }
+  
+  /* Slideshow Core */
+  #slideshow-holder { width: 100%; position: relative; flex-grow: 1; overflow: hidden; padding: 1rem; }
+  #slideshow-wrapper { width: 1280px; height: 720px; position: absolute; top: 50%; left: 50%; transform-origin: center; transform: translate(-50%, -50%) scale(var(--scale-factor, 1)); transition: transform 0.3s ease-in-out; border-radius: 16px; overflow: hidden; }
+
+  /* Feature Action Toolbar */
+  .action-toolbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-ornate);
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    z-index: 50;
+  }
+  .toolbar-btn {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .toolbar-btn span { font-size: 12px; font-family: 'Mukta', sans-serif; font-weight: bold; opacity: 0; transition: 0.3s; position: absolute; bottom: -20px; white-space: nowrap; }
+  .toolbar-btn:hover { color: var(--accent-primary); transform: translateY(-3px); }
+  .toolbar-btn:hover span { opacity: 1; bottom: -22px; }
+  .toolbar-btn.active-feature { color: var(--accent-primary); }
+</style>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script> tailwind.config = { darkMode: 'class', corePlugins: { preflight: false } } </script>
+</head>
+<body class="flex flex-col h-screen transition-colors duration-300">
+
+<!-- Audio Element (Local MP3 File) -->
+<audio id="bg-audio" loop>
+  <source src="mantra.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Theme Toggle -->
+<button id="theme-toggle" class="absolute top-4 right-4 bg-white/60 dark:bg-black/40 backdrop-blur-md p-3 rounded-full shadow-lg text-gray-800 dark:text-gray-200 hover:scale-110 transition-all duration-300 z-20 border-none cursor-pointer">
+  <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-xl"></i>
+  <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-xl"></i>
+</button>
+
+<!-- Navigation Controls -->
+<div id="nav-controls" class="relative flex-shrink-0 w-full flex justify-center items-center p-4 mt-2">
+  <span id="slide-counter" class="absolute left-6 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-500 dark:text-gray-400 font-sans uppercase tracking-widest"></span>
+  <div class="flex items-center space-x-4">
+    <button id="prev-slide" class="bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg border-none cursor-pointer">
+      <i class="fa-solid fa-chevron-left text-xl"></i>
+    </button>
+    <button id="next-slide" class="bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg border-none cursor-pointer">
+      <i class="fa-solid fa-chevron-right text-xl"></i>
+    </button>
+  </div>
+</div>
+
+<div id="slideshow-holder">
+  <div id="slideshow-wrapper">
+    
+    <!-- SLIDE 1 -->
+    <div class="slide-container active" id="slide1">
+      <div class="card-border">
+        <div class="corner-tl"></div><div class="corner-bl"></div>
+        <div class="cover-layout">
+          <p class="om-text"><i class="fa-solid fa-om"></i> ॥ श्री गणेशाय नमः ॥ <i class="fa-solid fa-om"></i></p>
+          <div class="floral-divider"><i class="fa-solid fa-seedling"></i> <i class="fa-solid fa-seedling"></i> <i class="fa-solid fa-seedling"></i></div>
+          <h3 class="subtitle">सादर आमंत्रण</h3>
+          <h1 class="title-main">प्रथम पुण्यतिथि एवं वार्षिक श्राद्ध</h1>
+          <p class="quote-text">
+          “जो इस संसार में आया है, उसे एक दिन जाना है,<br>
+          पर अपनों के हृदयों में उनकी स्मृतियाँ सदा जीवित रहती हैं।”
+          </p>
+          <div class="floral-divider"><i class="fa-solid fa-seedling"></i> <i class="fa-solid fa-seedling"></i> <i class="fa-solid fa-seedling"></i></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SLIDE 2 -->
+    <div class="slide-container" id="slide2">
+      <div class="card-border">
+        <div class="corner-tl"></div><div class="corner-bl"></div>
+        <div class="tribute-layout">
+          <div>
+            <div class="image-wrapper">
+              <img src="image_c7ec07.jpg" alt="स्वर्गीय श्रीमती गंगा मठपाल">
+            </div>
+          </div>
+          <div class="tribute-text-area">
+            <h3 class="subtitle"><i class="fa-solid fa-hands-praying"></i> परम पूज्या हमारी माताजी <i class="fa-solid fa-hands-praying"></i></h3>
+            <h2>स्वर्गीय श्रीमती गंगा मठपाल</h2>
+            <div class="dates-box">
+              <p>जन्म: 01 जनवरी 1940 &nbsp; | &nbsp; स्वर्गवास: 08 अक्टूबर 2025</p>
+            </div>
+            <p class="invitation-body">
+            अपनी परम पूज्या माताजी स्वर्गीय श्रीमती गंगा मठपाल की पावन स्मृति में उनकी प्रथम पुण्यतिथि एवं वार्षिक श्राद्ध का आयोजन किया जा रहा है।<br><br>
+            इस पुण्य अवसर पर हम अपने समस्त इष्ट-मित्रों, ग्रामवासियों, क्षेत्रवासियों एवं नगरवासियों को सादर आमंत्रित करते हैं।
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SLIDE 3 -->
+    <div class="slide-container" id="slide3">
+      <div class="card-border">
+        <div class="corner-tl"></div><div class="corner-bl"></div>
+        <div class="details-layout">
+          <div class="program-section">
+            <h3><i class="fa-solid fa-book-journal-whills"></i> श्राद्ध कार्यक्रम <i class="fa-solid fa-book-journal-whills"></i></h3>
+            <p style="color: var(--accent-secondary); font-weight: 600; font-size: 20px; margin-bottom: 5px;">आश्विन मास, कृष्ण पक्ष, द्वितीया तिथि</p>
+            <ul class="program-details">
+              <li><i class="fa-solid fa-calendar-check"></i> <strong>दिनांक:</strong> 27 अक्टूबर 2026</li>
+              <li><i class="fa-solid fa-clock"></i> <strong>समय:</strong> दोपहर 1:00 बजे से</li>
+              <li>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps">
+                <strong>स्थान:</strong> हमारा निवास स्थान, धर्म-गाँव
+              </li>
+            </ul>
+            <p style="text-align: left; font-size: 19px; color: var(--text-soft); line-height: 1.4;">
+            हम आप सभी से विनम्र अनुरोध करते हैं कि इस पुण्य अवसर पर अपनी गरिमामयी उपस्थिति प्रदान कर स्वर्गीय माताजी को श्रद्धासुमन अर्पित करें।
+            </p>
+            <p class="prayer-text"><i class="fa-solid fa-om"></i> ॐ शान्तिः शान्तिः शान्तिः <i class="fa-solid fa-om"></i></p>
+          </div>
+          
+          <div class="family-section">
+            <h3>सादर निवेदक</h3>
+            <div class="family-list">
+              <p style="font-weight: 700; font-size: 20px; color: var(--text-main);">
+              श्री प्रभात मठपाल &nbsp;•&nbsp; श्री संजय मठपाल &nbsp;•&nbsp; श्री भास्कर मठपाल
+              </p>
+              <p style="color: var(--text-soft);">
+              श्रीमती शोभा भट्ट &nbsp;•&nbsp; श्रीमती उषा &nbsp;•&nbsp; श्रीमती रेनू &nbsp;•&nbsp; श्रीमती रिंकू
+              </p>
+              <p style="font-size: 17px; color: var(--accent-secondary); margin-top: 5px;">
+              तरंग • उमंग • श्रेष्ठ • युक्ता • पारस • कामाक्षी<br>
+              मनीष • रेखा • दीपा • सुनीता
+              </p>
+              <p style="font-size: 19px; margin-top: 10px;">
+              <strong>एवं समस्त मठपाल परिवार एवं इष्ट-मित्र</strong>
+              </p>
+            </div>
+            
+            <button class="venue-bottom" onclick="openMap()">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" style="width: 22px; height: 22px;" alt="Google Maps">
+              धर्म-गाँव, द्वाराहाट (नक्शा देखें)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Action Toolbar -->
+<div class="action-toolbar">
+  <button class="toolbar-btn" id="btn-music" onclick="toggleMusic()" title="Play Bhajan">
+    <i class="fa-solid fa-music"></i>
+    <span>पत गयतर मतर</span>
+  </button>
+  <button class="toolbar-btn" id="btn-play" onclick="toggleAutoplay()" title="Auto Play">
+    <i class="fa-solid fa-play"></i>
+    <span>ऑटो प्ले</span>
+  </button>
+  <button class="toolbar-btn" onclick="addToCalendar()" title="Add to Calendar">
+    <i class="fa-regular fa-calendar-plus"></i>
+    <span>कैलेंडर</span>
+  </button>
+  <button class="toolbar-btn" onclick="openMap()" title="View on Maps">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" style="width: 24px; height: 24px; margin-bottom: 2px;" alt="Google Maps">
+    <span>नक्शा</span>
+  </button>
+  <button class="toolbar-btn" onclick="shareInvite()" title="Share Invite">
+    <i class="fa-solid fa-share-nodes"></i>
+    <span>शेयर</span>
+  </button>
+</div>
+
+<script>
+// --- LOCAL AUDIO PLAYBACK LOGIC ---
+const audio = document.getElementById('bg-audio');
+
+function toggleMusic() {
+  const btn = document.getElementById('btn-music');
+  
+  if (audio.paused) {
+    audio.play().then(() => {
+      btn.classList.add('active-feature');
+      btn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
+    }).catch(error => {
+      console.log("Audio play error:", error);
+    });
+  } else {
+    audio.pause();
+    btn.classList.remove('active-feature');
+    btn.innerHTML = `<i class="fa-solid fa-music"></i><span>पत गयतर मतर</span>`;
+  }
+}
+
+// Image processing logic
+async function fetchFifeImageBlobUsingAlr(urlString) {
+  if (urlString.startsWith('blob:') || urlString.startsWith('data:')) { throw new Error('Input URL is already a blob or data URL.'); }
+  let url = new URL(urlString, window.location.href); url.searchParams.set('alr', 'yes');
+  for (let i = 0; i < 5; i++) {
+    const response = await fetch(url.toString(), {credentials: 'include'});
+    if (!response.ok) throw new Error(`Fetch received not OK response: ${response.status}`);
+    if (!response.headers.get('content-type')?.startsWith('text/plain')) {
+      const blob = await response.blob();
+      if (blob.size > 0 && blob.type.startsWith('image/')) return blob;
+      throw new Error('Fetched blob is not a valid image.');
+    }
+    url = new URL(await response.text());
+  }
+  throw new Error('Exceeded maximum number of redirects.');
+}
+
+async function updateImageSourcesUsingAlr() {
+  await Promise.all(Array.from(document.querySelectorAll('img'), async (img) => {
+    if (img.src && img.src.includes('googleusercontent')) {
+      try { const blob = await fetchFifeImageBlobUsingAlr(img.src); img.src = URL.createObjectURL(blob); } catch (error) {}
+    }
+  }));
+}
+
+// --- NEW FEATURE FUNCTIONS ---
+let isAutoplay = false;
+let autoplayTimer;
+
+function openMap() {
+  window.open("https://maps.google.com/?q=Dharangaon,+Dwarahat,+Uttarakhand", "_blank");
+}
+
+function addToCalendar() {
+  const url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shraddh+Program+-+Late+Smt.+Ganga+Mathpal&dates=20261027T073000Z/20261027T103000Z&details=First+Death+Anniversary+and+Annual+Shraddh.&location=Dharma-Gaon,+Dwarahat";
+  window.open(url, "_blank");
+}
+
+async function shareInvite() {
+  const shareTitle = 'प्रथम पुण्यतिथि आमंत्रण';
+  const shareText = 'स्वर्गीय श्रीमती गंगा मठपाल की प्रथम पुण्यतिथि एवं वार्षिक श्राद्ध का निमंत्रण।';
+  const shareUrl = window.location.href;
+
+  // 1. Fallback for Local Files (Prevents Chrome Crash)
+  if (window.location.protocol === 'file:') {
+    const fullText = `${shareTitle}\n${shareText}\n\n${shareUrl}`;
+    navigator.clipboard.writeText(fullText).then(() => {
+      alert("निमंत्रण का टेक्स्ट कॉपी कर लिया गया है!\n\nअब आप इसे WhatsApp, Facebook या कहीं भी पेस्ट (Paste) कर सकते हैं।");
+    }).catch((err) => {
+      console.log('Clipboard error:', err);
+      alert("लिंक कॉपी करने में विफल।");
+    });
+    return;
+  }
+
+  // 2. Native Share API for Hosted/Mobile Environments
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: shareTitle,
+        text: shareText,
+        url: shareUrl
+      });
+    } catch (err) { 
+      console.log('Error sharing:', err); 
+    }
+  } else {
+    // 3. Fallback for older browsers
+    alert("आपका ब्राउज़र शेयर फीचर को सपोर्ट नहीं करता है।");
+  }
+}
+
+// --- CORE SLIDESHOW LOGIC ---
+let currentSlide = 0;
+let slides;
+
+function updateUi() {
+  slides = document.querySelectorAll('.slide-container');
+  slides.forEach((slide, index) => {
+    if (index === currentSlide) slide.classList.add('active');
+    else slide.classList.remove('active');
+  });
+  document.getElementById('prev-slide').disabled = currentSlide === 0;
+  document.getElementById('next-slide').disabled = currentSlide === slides.length - 1;
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+}
+
+function showNextSlide() {
+  if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); resetAutoplay(); }
+}
+function showPrevSlide() {
+  if (currentSlide > 0) { currentSlide--; updateUi(); resetAutoplay(); }
+}
+
+function toggleAutoplay() {
+  const btn = document.getElementById('btn-play');
+  isAutoplay = !isAutoplay;
+  if (isAutoplay) {
+    btn.classList.add('active-feature');
+    btn.innerHTML = `<i class="fa-solid fa-pause"></i><span>रोकें</span>`;
+    autoplayTimer = setInterval(() => {
+      if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); }
+      else { currentSlide = 0; updateUi(); } 
+    }, 5000);
+  } else {
+    btn.classList.remove('active-feature');
+    btn.innerHTML = `<i class="fa-solid fa-play"></i><span>ऑटो प्ले</span>`;
+    clearInterval(autoplayTimer);
+  }
+}
+
+function resetAutoplay() {
+  if (isAutoplay) {
+    clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(() => {
+      if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); }
+      else { currentSlide = 0; updateUi(); }
+    }, 5000);
+  }
+}
+
+function initializeSlideshowUi() {
+  document.getElementById('next-slide').addEventListener('click', showNextSlide);
+  document.getElementById('prev-slide').addEventListener('click', showPrevSlide);
+  
+  document.addEventListener('keydown', (e) => {
+    const el = e.target;
+    if (el.isContentEditable || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') showNextSlide();
+    else if (e.key === 'ArrowLeft') showPrevSlide();
+  });
+
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const htmlEl = document.documentElement;
+
+  function setTheme(isDark) {
+    htmlEl.classList.toggle('dark', isDark);
+    document.getElementById('theme-toggle-dark-icon').classList.toggle('hidden', isDark);
+    document.getElementById('theme-toggle-light-icon').classList.toggle('hidden', !isDark);
+    localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+  }
+  
+  const isDarkMode = localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  setTheme(isDarkMode);
+  themeToggleBtn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
+
+  function updateScale() {
+    const baseWidth = 1280; const baseHeight = 720;
+    const slideshowWrapper = document.getElementById('slideshow-wrapper');
+    const slideshowHolder = document.getElementById('slideshow-holder');
+    const scaleX = slideshowHolder.clientWidth / baseWidth;
+    const scaleY = slideshowHolder.clientHeight / baseHeight;
+    slideshowWrapper.style.setProperty('--scale-factor', Math.min(scaleX, scaleY));
+  }
+
+  updateUi();
+  updateScale();
+  window.addEventListener('resize', updateScale);
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+  await Promise.all([updateImageSourcesUsingAlr()]);
+  initializeSlideshowUi();
+  
+  // 1. AUTO-START SLIDESHOW
+  if (!isAutoplay) {
+    toggleAutoplay(); 
+  }
+
+  // 2. AUTO-START AUDIO & BROWSER BLOCK FALLBACK
+  const audioPromise = audio.play();
+  const musicBtn = document.getElementById('btn-music');
+  
+  if (audioPromise !== undefined) {
+    audioPromise.then(() => {
+      // Audio autoplay succeeded without interaction
+      musicBtn.classList.add('active-feature');
+      musicBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
+    }).catch(error => {
+      // Audio blocked by browser. Wait for user to interact with the page.
+      const startAudioOnInteract = () => {
+        audio.play();
+        musicBtn.classList.add('active-feature');
+        musicBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
+        // Remove interaction listeners once playing
+        ['click', 'touchstart', 'keydown'].forEach(evt => 
+          document.removeEventListener(evt, startAudioOnInteract)
+        );
+      };
+      
+      // Bind interaction listeners
+      ['click', 'touchstart', 'keydown'].forEach(evt => 
+        document.addEventListener(evt, startAudioOnInteract, {once: true})
+      );
+    });
+  }
+});
+</script>
+</body>
+</html>
