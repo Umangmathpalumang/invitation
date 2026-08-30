@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   :root {
-    /* Light Mode - Traditional Cream, Maroon & Gold */
     --bg-body: #f4ece1;
     --bg-inner: #ffffff;
     --bg-section: #fcf9f5;
@@ -24,7 +23,6 @@
   }
 
   .dark {
-    /* Dark Mode - Charcoal & Luminous Gold */
     --bg-body: #14110f;
     --bg-inner: #1e1917;
     --bg-section: #26201d;
@@ -57,7 +55,7 @@
     display: flex;
     flex-direction: column;
     font-family: 'Mukta', sans-serif;
-    height: 720px;
+    height: 100%;
     justify-content: center;
     overflow: hidden;
     padding: 25px;
@@ -68,7 +66,7 @@
     opacity: 0;
     pointer-events: none;
     transform: scale(0.96);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .slide-container.active {
     opacity: 1;
@@ -87,11 +85,15 @@
     flex-direction: column;
     position: relative;
     background: radial-gradient(circle at center, transparent 60%, rgba(198, 160, 82, 0.05) 100%);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
-  
-  /* Decorative Corners */
+  .card-border::-webkit-scrollbar { width: 4px; }
+  .card-border::-webkit-scrollbar-thumb { background: var(--border-ornate); border-radius: 4px; }
+
+  /* Ornaments */
   .card-border::before, .card-border::after, .corner-tl, .corner-bl {
-    content: '\f18c'; /* FontAwesome Pagelines */
+    content: '\f18c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     position: absolute;
@@ -118,18 +120,17 @@
   .floral-divider { color: var(--border-ornate); font-size: 20px; text-align: center; margin: 15px 0; letter-spacing: 15px; }
   .subtitle { font-size: 32px; color: var(--accent-secondary); margin-bottom: 8px; }
 
-  /* Slide Layouts */
+  /* Desktop Layouts */
   .cover-layout { justify-content: center; align-items: center; text-align: center; height: 100%; display: flex; flex-direction: column; }
   .tribute-layout { display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: center; height: 100%; }
   .image-wrapper { width: 100%; height: 480px; border-radius: 200px 200px 16px 16px; overflow: hidden; border: 6px solid var(--border-ornate); box-shadow: 0 12px 25px var(--shadow-color); margin: 0 auto; background-color: var(--bg-section); }
   .image-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; }
   .tribute-text-area { text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; }
   .tribute-text-area h2 { font-size: 46px; margin-bottom: 15px; }
-  
   .dates-box { background-color: var(--bg-section); padding: 12px 25px; border-radius: 8px; display: inline-block; margin: 10px auto 25px; border: 1px solid var(--border-ornate); }
   .dates-box p { font-size: 20px; margin: 0; color: var(--accent-primary); font-weight: 600; }
   .invitation-body { font-size: 23px; text-align: justify; text-align-last: center; color: var(--text-main); }
-
+  
   .details-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; height: 100%; align-items: stretch; padding-top: 10px; }
   .program-section, .family-section { background-color: var(--bg-section); border: 1px solid rgba(198, 160, 82, 0.4); border-radius: 12px; padding: 30px; height: 100%; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; }
   .program-section h3, .family-section h3 { font-size: 32px; margin-bottom: 15px; border-bottom: 2px solid var(--border-ornate); padding-bottom: 10px; display: inline-block; align-self: center; }
@@ -137,17 +138,15 @@
   .program-details li { font-size: 21px; margin-bottom: 12px; display: flex; align-items: center; color: var(--text-main); }
   .program-details li img { width: 22px; height: 22px; margin-right: 15px; }
   .program-details li i { color: var(--accent-primary); margin-right: 15px; width: 25px; text-align: center; font-size: 22px; }
-  
   .prayer-text { font-weight: 700; color: var(--accent-primary); font-size: 24px; margin-top: 10px; }
   .family-list { font-size: 18px; line-height: 1.6; display: flex; flex-direction: column; gap: 10px; color: var(--text-main); margin: 10px 0; }
   .family-list p strong { color: var(--accent-primary); font-size: 19px; }
-  
   .venue-bottom { background-color: var(--bg-body); padding: 8px 15px; border-radius: 6px; font-weight: bold; color: var(--accent-primary); font-size: 18px; margin-top: 10px; border: 1px dashed var(--border-ornate); cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
   .venue-bottom:hover { background-color: rgba(198, 160, 82, 0.2); }
-  
-  /* Slideshow Core */
+
+  /* Base Wrapper */
   #slideshow-holder { width: 100%; position: relative; flex-grow: 1; overflow: hidden; padding: 1rem; }
-  #slideshow-wrapper { width: 1280px; height: 720px; position: absolute; top: 50%; left: 50%; transform-origin: center; transform: translate(-50%, -50%) scale(var(--scale-factor, 1)); transition: transform 0.3s ease-in-out; border-radius: 16px; overflow: hidden; }
+  #slideshow-wrapper { position: absolute; top: 50%; left: 50%; transform-origin: center; transform: translate(-50%, -50%) scale(var(--scale-factor, 1)); border-radius: 16px; }
 
   /* Feature Action Toolbar */
   .action-toolbar {
@@ -165,31 +164,71 @@
     box-shadow: 0 10px 25px var(--shadow-color);
     z-index: 50;
   }
-  .toolbar-btn {
-    background: none;
-    border: none;
-    color: var(--text-main);
-    font-size: 22px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-  }
-  .toolbar-btn span { font-size: 12px; font-family: 'Mukta', sans-serif; font-weight: bold; opacity: 0; transition: 0.3s; position: absolute; bottom: -20px; white-space: nowrap; }
+  .toolbar-btn { background: none; border: none; color: var(--text-main); font-size: 22px; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; position: relative; }
+  .toolbar-btn span { font-size: 12px; font-family: 'Mukta', sans-serif; font-weight: bold; opacity: 0; transition: 0.3s; position: absolute; bottom: -20px; white-space: nowrap; pointer-events: none; }
   .toolbar-btn:hover { color: var(--accent-primary); transform: translateY(-3px); }
   .toolbar-btn:hover span { opacity: 1; bottom: -22px; }
   .toolbar-btn.active-feature { color: var(--accent-primary); }
+
+  /* ====================================================
+     📱 TRULY RESPONSIVE MOBILE VIEW
+     ==================================================== */
+  @media (max-width: 768px) {
+    #slideshow-wrapper {
+      /* Remove absolute pixel width, use 95% of screen */
+      width: 95vw !important;
+      height: 82vh !important; 
+    }
+    .slide-container { padding: 10px; }
+    .card-border { padding: 25px 15px; }
+    
+    .card-border::before, .card-border::after, .corner-tl, .corner-bl { font-size: 18px; }
+    .card-border::before { top: 10px; left: 10px; }
+    .card-border::after { bottom: 10px; right: 10px; }
+    .corner-tl { top: 10px; right: 10px; }
+    .corner-bl { bottom: 10px; left: 10px; }
+    
+    /* Cover Adjustments */
+    .om-text { font-size: 22px; margin-bottom: 5px; }
+    .title-main { font-size: 34px; line-height: 1.3; }
+    .subtitle { font-size: 22px; }
+    .quote-text { font-size: 18px; padding: 0 10px; margin: 15px 0; }
+    .floral-divider { font-size: 14px; letter-spacing: 6px; }
+    
+    /* Tribute Adjustments (Stack Vertically) */
+    .tribute-layout { grid-template-columns: 1fr; gap: 15px; align-content: center; }
+    .image-wrapper { height: 260px; width: 200px; border-width: 4px; }
+    .tribute-text-area h2 { font-size: 32px; margin-bottom: 5px; }
+    .dates-box { padding: 8px 15px; margin-bottom: 10px; }
+    .dates-box p { font-size: 15px; }
+    .invitation-body { font-size: 18px; text-align: center; }
+    
+    /* Details Adjustments (Stack Vertically) */
+    .details-layout { grid-template-columns: 1fr; gap: 15px; padding-top: 0; }
+    .program-section, .family-section { padding: 15px; height: auto; }
+    .program-section h3, .family-section h3 { font-size: 24px; margin-bottom: 10px; }
+    .program-details li { font-size: 16px; margin-bottom: 8px; }
+    .prayer-text { font-size: 18px; }
+    .family-list { font-size: 15px; }
+    .family-list p strong { font-size: 17px; }
+    .venue-bottom { font-size: 15px; }
+    
+    /* Toolbar & Navigation */
+    #slide-counter { font-size: 12px; left: 15px; }
+    .action-toolbar { width: 90%; padding: 12px; justify-content: space-between; bottom: 15px; }
+    .toolbar-btn { font-size: 20px; }
+    .toolbar-btn span { display: none !important; }
+  }
 </style>
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <script> tailwind.config = { darkMode: 'class', corePlugins: { preflight: false } } </script>
 </head>
 <body class="flex flex-col h-screen transition-colors duration-300">
 
-<!-- Audio Element (Local MP3 File) -->
-<audio id="bg-audio" loop>
+<!-- Audio Element with Multiple Fallbacks to Ensure It Finds Your File -->
+<audio id="bg-audio" loop preload="auto">
   <source src="mantra.mp3" type="audio/mpeg">
+  <source src="Pitru Gayatri Mantra 108 times In 12 minutes  पत गयतर मतर.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Theme Toggle -->
@@ -213,7 +252,6 @@
 
 <div id="slideshow-holder">
   <div id="slideshow-wrapper">
-    
     <!-- SLIDE 1 -->
     <div class="slide-container active" id="slide1">
       <div class="card-border">
@@ -299,7 +337,7 @@
             
             <button class="venue-bottom" onclick="openMap()">
               <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" style="width: 22px; height: 22px;" alt="Google Maps">
-              धर्म-गाँव, द्वाराहाट (नक्शा देखें)
+              धर्म-गाँव, द्वाराहाट
             </button>
           </div>
         </div>
@@ -310,13 +348,13 @@
 
 <!-- Bottom Action Toolbar -->
 <div class="action-toolbar">
-  <button class="toolbar-btn" id="btn-music" onclick="toggleMusic()" title="Play Bhajan">
+  <button class="toolbar-btn" id="btn-music" onclick="toggleMusic()" title="Play Music">
     <i class="fa-solid fa-music"></i>
-    <span>पत गयतर मतर</span>
+    <span>संगीत</span>
   </button>
-  <button class="toolbar-btn" id="btn-play" onclick="toggleAutoplay()" title="Auto Play">
-    <i class="fa-solid fa-play"></i>
-    <span>ऑटो प्ले</span>
+  <button class="toolbar-btn active-feature" id="btn-play" onclick="toggleAutoplay()" title="Auto Play">
+    <i class="fa-solid fa-pause"></i>
+    <span>स्लाइड शो</span>
   </button>
   <button class="toolbar-btn" onclick="addToCalendar()" title="Add to Calendar">
     <i class="fa-regular fa-calendar-plus"></i>
@@ -333,104 +371,15 @@
 </div>
 
 <script>
-// --- LOCAL AUDIO PLAYBACK LOGIC ---
-const audio = document.getElementById('bg-audio');
-
-function toggleMusic() {
-  const btn = document.getElementById('btn-music');
-  
-  if (audio.paused) {
-    audio.play().then(() => {
-      btn.classList.add('active-feature');
-      btn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
-    }).catch(error => {
-      console.log("Audio play error:", error);
-    });
-  } else {
-    audio.pause();
-    btn.classList.remove('active-feature');
-    btn.innerHTML = `<i class="fa-solid fa-music"></i><span>पत गयतर मतर</span>`;
-  }
-}
-
-// Image processing logic
-async function fetchFifeImageBlobUsingAlr(urlString) {
-  if (urlString.startsWith('blob:') || urlString.startsWith('data:')) { throw new Error('Input URL is already a blob or data URL.'); }
-  let url = new URL(urlString, window.location.href); url.searchParams.set('alr', 'yes');
-  for (let i = 0; i < 5; i++) {
-    const response = await fetch(url.toString(), {credentials: 'include'});
-    if (!response.ok) throw new Error(`Fetch received not OK response: ${response.status}`);
-    if (!response.headers.get('content-type')?.startsWith('text/plain')) {
-      const blob = await response.blob();
-      if (blob.size > 0 && blob.type.startsWith('image/')) return blob;
-      throw new Error('Fetched blob is not a valid image.');
-    }
-    url = new URL(await response.text());
-  }
-  throw new Error('Exceeded maximum number of redirects.');
-}
-
-async function updateImageSourcesUsingAlr() {
-  await Promise.all(Array.from(document.querySelectorAll('img'), async (img) => {
-    if (img.src && img.src.includes('googleusercontent')) {
-      try { const blob = await fetchFifeImageBlobUsingAlr(img.src); img.src = URL.createObjectURL(blob); } catch (error) {}
-    }
-  }));
-}
-
-// --- NEW FEATURE FUNCTIONS ---
-let isAutoplay = false;
+// ==========================================
+// 1. SIMPLE SLIDESHOW LOGIC
+// ==========================================
+let currentSlide = 0;
+let slides = document.querySelectorAll('.slide-container');
+let isAutoplay = true; // Slideshow starts on automatically
 let autoplayTimer;
 
-function openMap() {
-  window.open("https://maps.google.com/?q=Dharangaon,+Dwarahat,+Uttarakhand", "_blank");
-}
-
-function addToCalendar() {
-  const url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shraddh+Program+-+Late+Smt.+Ganga+Mathpal&dates=20261027T073000Z/20261027T103000Z&details=First+Death+Anniversary+and+Annual+Shraddh.&location=Dharma-Gaon,+Dwarahat";
-  window.open(url, "_blank");
-}
-
-async function shareInvite() {
-  const shareTitle = 'प्रथम पुण्यतिथि आमंत्रण';
-  const shareText = 'स्वर्गीय श्रीमती गंगा मठपाल की प्रथम पुण्यतिथि एवं वार्षिक श्राद्ध का निमंत्रण।';
-  const shareUrl = window.location.href;
-
-  // 1. Fallback for Local Files (Prevents Chrome Crash)
-  if (window.location.protocol === 'file:') {
-    const fullText = `${shareTitle}\n${shareText}\n\n${shareUrl}`;
-    navigator.clipboard.writeText(fullText).then(() => {
-      alert("निमंत्रण का टेक्स्ट कॉपी कर लिया गया है!\n\nअब आप इसे WhatsApp, Facebook या कहीं भी पेस्ट (Paste) कर सकते हैं।");
-    }).catch((err) => {
-      console.log('Clipboard error:', err);
-      alert("लिंक कॉपी करने में विफल।");
-    });
-    return;
-  }
-
-  // 2. Native Share API for Hosted/Mobile Environments
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title: shareTitle,
-        text: shareText,
-        url: shareUrl
-      });
-    } catch (err) { 
-      console.log('Error sharing:', err); 
-    }
-  } else {
-    // 3. Fallback for older browsers
-    alert("आपका ब्राउज़र शेयर फीचर को सपोर्ट नहीं करता है।");
-  }
-}
-
-// --- CORE SLIDESHOW LOGIC ---
-let currentSlide = 0;
-let slides;
-
 function updateUi() {
-  slides = document.querySelectorAll('.slide-container');
   slides.forEach((slide, index) => {
     if (index === currentSlide) slide.classList.add('active');
     else slide.classList.remove('active');
@@ -441,114 +390,158 @@ function updateUi() {
 }
 
 function showNextSlide() {
-  if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); resetAutoplay(); }
-}
-function showPrevSlide() {
-  if (currentSlide > 0) { currentSlide--; updateUi(); resetAutoplay(); }
+  if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); }
+  else { currentSlide = 0; updateUi(); } // Loop back to start
 }
 
+function showPrevSlide() {
+  if (currentSlide > 0) { currentSlide--; updateUi(); }
+}
+
+// Start auto-cycling the slides every 5 seconds
+function startAutoplay() {
+  autoplayTimer = setInterval(showNextSlide, 5000);
+}
+
+// Button to toggle Auto-play on/off
 function toggleAutoplay() {
   const btn = document.getElementById('btn-play');
-  isAutoplay = !isAutoplay;
   if (isAutoplay) {
-    btn.classList.add('active-feature');
-    btn.innerHTML = `<i class="fa-solid fa-pause"></i><span>रोकें</span>`;
-    autoplayTimer = setInterval(() => {
-      if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); }
-      else { currentSlide = 0; updateUi(); } 
-    }, 5000);
-  } else {
-    btn.classList.remove('active-feature');
-    btn.innerHTML = `<i class="fa-solid fa-play"></i><span>ऑटो प्ले</span>`;
     clearInterval(autoplayTimer);
+    isAutoplay = false;
+    btn.classList.remove('active-feature');
+    btn.innerHTML = `<i class="fa-solid fa-play"></i><span>स्लाइड शो</span>`;
+  } else {
+    showNextSlide(); // instantly go to next
+    startAutoplay();
+    isAutoplay = true;
+    btn.classList.add('active-feature');
+    btn.innerHTML = `<i class="fa-solid fa-pause"></i><span>स्लाइड शो</span>`;
   }
 }
 
+// Reset timer if user manually clicks Next/Prev
 function resetAutoplay() {
   if (isAutoplay) {
     clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(() => {
-      if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); }
-      else { currentSlide = 0; updateUi(); }
-    }, 5000);
+    startAutoplay();
   }
 }
 
-function initializeSlideshowUi() {
-  document.getElementById('next-slide').addEventListener('click', showNextSlide);
-  document.getElementById('prev-slide').addEventListener('click', showPrevSlide);
-  
-  document.addEventListener('keydown', (e) => {
-    const el = e.target;
-    if (el.isContentEditable || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
-    if (e.key === 'ArrowRight') showNextSlide();
-    else if (e.key === 'ArrowLeft') showPrevSlide();
-  });
+document.getElementById('next-slide').addEventListener('click', () => { showNextSlide(); resetAutoplay(); });
+document.getElementById('prev-slide').addEventListener('click', () => { showPrevSlide(); resetAutoplay(); });
 
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const htmlEl = document.documentElement;
+// Keyboard controls
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') { showNextSlide(); resetAutoplay(); }
+  else if (e.key === 'ArrowLeft') { showPrevSlide(); resetAutoplay(); }
+});
 
-  function setTheme(isDark) {
-    htmlEl.classList.toggle('dark', isDark);
-    document.getElementById('theme-toggle-dark-icon').classList.toggle('hidden', isDark);
-    document.getElementById('theme-toggle-light-icon').classList.toggle('hidden', !isDark);
-    localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+// ==========================================
+// 2. AUDIO LOGIC (WITH MOBILE FIX)
+// ==========================================
+const audio = document.getElementById('bg-audio');
+const musicBtn = document.getElementById('btn-music');
+let hasAudioStarted = false;
+
+function toggleMusic() {
+  if (audio.paused) {
+    audio.play().then(() => {
+      musicBtn.classList.add('active-feature');
+      musicBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
+    }).catch(e => console.log("Audio play failed:", e));
+  } else {
+    audio.pause();
+    musicBtn.classList.remove('active-feature');
+    musicBtn.innerHTML = `<i class="fa-solid fa-music"></i><span>संगीत</span>`;
   }
+}
+
+// 📱 SMART MOBILE FIX: Play audio automatically on FIRST TOUCH anywhere on the screen
+function playAudioOnFirstTouch() {
+  if (!hasAudioStarted) {
+    audio.play().then(() => {
+      hasAudioStarted = true;
+      musicBtn.classList.add('active-feature');
+      musicBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
+    }).catch(e => console.log("Touch audio play failed:", e));
+    
+    // Remove listeners once activated so it doesn't interrupt manual pausing
+    document.removeEventListener('click', playAudioOnFirstTouch);
+    document.removeEventListener('touchstart', playAudioOnFirstTouch);
+  }
+}
+
+document.addEventListener('click', playAudioOnFirstTouch);
+document.addEventListener('touchstart', playAudioOnFirstTouch);
+
+// ==========================================
+// 3. RESPONSIVE SCALING (DESKTOP ONLY)
+// ==========================================
+function updateScale() {
+  const slideshowWrapper = document.getElementById('slideshow-wrapper');
+  const slideshowHolder = document.getElementById('slideshow-holder');
   
+  if (window.innerWidth <= 768) {
+    // 📱 ON MOBILE: Do NOT scale. Let the CSS Media Queries flow naturally.
+    slideshowWrapper.style.width = '100%';
+    slideshowWrapper.style.height = '100%';
+    slideshowWrapper.style.setProperty('--scale-factor', 1);
+  } else {
+    // 💻 ON DESKTOP: Scale the fixed 1280x720 layout to fit the screen
+    slideshowWrapper.style.width = '1280px';
+    slideshowWrapper.style.height = '720px';
+    const scaleX = slideshowHolder.clientWidth / 1280;
+    const scaleY = slideshowHolder.clientHeight / 720;
+    slideshowWrapper.style.setProperty('--scale-factor', Math.min(scaleX, scaleY));
+  }
+}
+
+// ==========================================
+// 4. THEME & OTHER FEATURES
+// ==========================================
+function openMap() { window.open("https://maps.google.com/?q=Dharangaon,+Dwarahat,+Uttarakhand", "_blank"); }
+function addToCalendar() {
+  const url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shraddh+Program+-+Late+Smt.+Ganga+Mathpal&dates=20261027T073000Z/20261027T103000Z&details=First+Death+Anniversary+and+Annual+Shraddh.&location=Dharma-Gaon,+Dwarahat";
+  window.open(url, "_blank");
+}
+async function shareInvite() {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'प्रथम पुण्यतिथि आमंत्रण',
+        text: 'स्वर्गीय श्रीमती गंगा मठपाल की प्रथम पुण्यतिथि एवं वार्षिक श्राद्ध का निमंत्रण।',
+        url: window.location.href
+      });
+    } catch (err) { console.log('Error sharing', err); }
+  } else {
+    const fullText = `प्रथम पुण्यतिथि आमंत्रण\nस्वर्गीय श्रीमती गंगा मठपाल की प्रथम पुण्यतिथि एवं वार्षिक श्राद्ध का निमंत्रण।\n\n${window.location.href}`;
+    navigator.clipboard.writeText(fullText).then(() => { alert("निमंत्रण कॉपी हो गया है!"); });
+  }
+}
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+const htmlEl = document.documentElement;
+function setTheme(isDark) {
+  htmlEl.classList.toggle('dark', isDark);
+  document.getElementById('theme-toggle-dark-icon').classList.toggle('hidden', isDark);
+  document.getElementById('theme-toggle-light-icon').classList.toggle('hidden', !isDark);
+  localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+}
+
+// Initialization
+document.addEventListener('DOMContentLoaded', () => {
+  // Theme check
   const isDarkMode = localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   setTheme(isDarkMode);
   themeToggleBtn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
-
-  function updateScale() {
-    const baseWidth = 1280; const baseHeight = 720;
-    const slideshowWrapper = document.getElementById('slideshow-wrapper');
-    const slideshowHolder = document.getElementById('slideshow-holder');
-    const scaleX = slideshowHolder.clientWidth / baseWidth;
-    const scaleY = slideshowHolder.clientHeight / baseHeight;
-    slideshowWrapper.style.setProperty('--scale-factor', Math.min(scaleX, scaleY));
-  }
-
+  
   updateUi();
   updateScale();
   window.addEventListener('resize', updateScale);
-}
-
-document.addEventListener('DOMContentLoaded', async function() {
-  await Promise.all([updateImageSourcesUsingAlr()]);
-  initializeSlideshowUi();
   
-  // 1. AUTO-START SLIDESHOW
-  if (!isAutoplay) {
-    toggleAutoplay(); 
-  }
-
-  // 2. AUTO-START AUDIO & BROWSER BLOCK FALLBACK
-  const audioPromise = audio.play();
-  const musicBtn = document.getElementById('btn-music');
-  
-  if (audioPromise !== undefined) {
-    audioPromise.then(() => {
-      // Audio autoplay succeeded without interaction
-      musicBtn.classList.add('active-feature');
-      musicBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
-    }).catch(error => {
-      // Audio blocked by browser. Wait for user to interact with the page.
-      const startAudioOnInteract = () => {
-        audio.play();
-        musicBtn.classList.add('active-feature');
-        musicBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i><span>मौन</span>`;
-        // Remove interaction listeners once playing
-        ['click', 'touchstart', 'keydown'].forEach(evt => 
-          document.removeEventListener(evt, startAudioOnInteract)
-        );
-      };
-      
-      // Bind interaction listeners
-      ['click', 'touchstart', 'keydown'].forEach(evt => 
-        document.addEventListener(evt, startAudioOnInteract, {once: true})
-      );
-    });
-  }
+  // Start the automated slideshow immediately
+  startAutoplay();
 });
 </script>
 </body>
